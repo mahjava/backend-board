@@ -20,11 +20,17 @@ class AuthController extends Controller
 
         // تلاش برای لاگین و ساخت توکن
         if (! $token = Auth::guard('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            return response()->json([
+                'success'=>false,
+                 'message'=>'نام کاربری یا کلمه عبور صحیح نمی باشد',
+                'error' => 'Invalid credentials'
+            ], 401);
         }
 
         // بازگشت پاسخ با توکن
         return response()->json([
+            'success'=>true,
+            'message'=>'ورود موفقیت آمیز بود',
             'access_token' => $token,
             'token_type'   => 'bearer',
             'expires_in'   => Auth::guard('api')->factory()->getTTL() * 60,
