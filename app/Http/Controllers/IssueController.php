@@ -39,9 +39,14 @@ class IssueController extends Controller
             ],
         ]);
 
+
+        $max= Issue::where('project_id', $request->project_id)->max('number');
+        $number=$max+1;
+
         $issue = new Issue;
         $issue->title = $request->title;
         $issue->project_id = $request->project_id;
+        $issue->number=$number;
         $issue->save();
 
         return response()->json(
