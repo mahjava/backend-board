@@ -13,6 +13,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/projects',[ProjectController::class,'getAll']);
     Route::post('/project', [ProjectController::class,'store']);
 
-    Route::get('issues', [IssueController::class,'index']);
-    Route::post('issue', [IssueController::class,'store']);
+    Route::get('/issues', [IssueController::class,'index']);
+    Route::post('/issue', [IssueController::class,'store']);
 });
